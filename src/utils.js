@@ -77,3 +77,12 @@ export const toLambda = (x) => {
   if (Array.isArray(x)) return fromArray(x.map((y) => toLambda(y)));
   return x;
 };
+
+export const fromLambda = (x) => {
+  if (Number.isInteger(toInt(x))) return toInt(x);
+  if (typeof toBool(x) === "boolean") return toBool(x);
+  if (Array.isArray(toArray(x))) {
+    return toArray(x).map((elem) => fromLambda(elem));
+  }
+  return x;
+};

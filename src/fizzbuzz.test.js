@@ -1,6 +1,6 @@
 import { ONE, RANGE } from "./malc";
 import { FIFTEEN, FIZZBUZZFUNC, FIZZBUZZFUNC_EXP } from "./fizzbuzz";
-import { toFizzBuzz } from "./utils.js";
+import { toFizzBuzz } from "./utils";
 
 const fizzBuzz = [
   1,

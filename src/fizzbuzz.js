@@ -8,43 +8,39 @@ import {
   MOD,
   MULT,
   PLUS,
-  THREE,
   TWO,
+  THREE,
+  FIVE,
+  SIX,
+  SEVEN,
+  TEN,
 } from "./malc";
-
-const FIVE = (f) => (x) => f(f(f(f(f(x)))));
-
-const SIX = (f) => (x) => f(f(f(f(f(f(x))))));
-
-const SEVEN = (f) => (x) => f(f(f(f(f(f(f(x)))))));
-
-const TEN = (f) => (x) => f(f(f(f(f(f(f(f(f(f(x))))))))));
 
 export const FIFTEEN = PLUS(TEN)(FIVE);
 
-const TWENTY = PLUS(TEN)(TEN);
+export const TWENTY = PLUS(TEN)(TEN);
 
-const HUNDRED = MULT(TEN)(TEN);
+export const HUNDRED = MULT(TEN)(TEN);
 
-const F = MULT(TEN)(SEVEN);
+export const F = MULT(TEN)(SEVEN);
 
-const I = PLUS(HUNDRED)(FIVE);
+export const I = PLUS(HUNDRED)(FIVE);
 
-const Z = PLUS(HUNDRED)(PLUS(TWENTY)(TWO));
+export const Z = PLUS(HUNDRED)(PLUS(TWENTY)(TWO));
 
-const B = PLUS(MULT(TEN)(SIX))(SIX);
+export const B = PLUS(MULT(TEN)(SIX))(SIX);
 
-const U = PLUS(HUNDRED)(PLUS(TEN)(SEVEN));
+export const U = PLUS(HUNDRED)(PLUS(TEN)(SEVEN));
 
-const FIZZ = LIST_ELEMENT(F)(
+export const FIZZ = LIST_ELEMENT(F)(
   LIST_ELEMENT(I)(LIST_ELEMENT(Z)(LIST_ELEMENT(Z)(EMPTY_LIST)))
 );
 
-const BUZZ = LIST_ELEMENT(B)(
+export const BUZZ = LIST_ELEMENT(B)(
   LIST_ELEMENT(U)(LIST_ELEMENT(Z)(LIST_ELEMENT(Z)(EMPTY_LIST)))
 );
 
-const FIZZBUZZ = APPEND(FIZZ)(BUZZ);
+export const FIZZBUZZ = APPEND(FIZZ)(BUZZ);
 
 export const FIZZBUZZFUNC = MAP((n) =>
   IF_THEN_ELSE(IS_ZERO(MOD(n)(FIFTEEN)))(FIZZBUZZ)(

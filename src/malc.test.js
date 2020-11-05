@@ -1,4 +1,4 @@
-import * as λ from "./malc.js";
+import * as λ from "./malc";
 import {
   fromString,
   toArray,
@@ -9,7 +9,7 @@ import {
   toPairInt,
   toString,
   toTreeInt,
-} from "./utils.js";
+} from "./utils";
 
 describe("ID", () => {
   it("returns the argument passed into it", () => {
@@ -104,6 +104,48 @@ describe("TWO", () => {
 describe("THREE", () => {
   it("evaluates to 3", () => {
     expect(toInt(λ.THREE)).toBe(3);
+  });
+});
+
+describe("FOUR", () => {
+  it("evaluates to 4", () => {
+    expect(toInt(λ.FOUR)).toBe(4);
+  });
+});
+
+describe("FIVE", () => {
+  it("evaluates to 5", () => {
+    expect(toInt(λ.FIVE)).toBe(5);
+  });
+});
+
+describe("SIX", () => {
+  it("evaluates to 6", () => {
+    expect(toInt(λ.SIX)).toBe(6);
+  });
+});
+
+describe("SEVEN", () => {
+  it("evaluates to 7", () => {
+    expect(toInt(λ.SEVEN)).toBe(7);
+  });
+});
+
+describe("EIGHT", () => {
+  it("evaluates to 8", () => {
+    expect(toInt(λ.EIGHT)).toBe(8);
+  });
+});
+
+describe("NINE", () => {
+  it("evaluates to 9", () => {
+    expect(toInt(λ.NINE)).toBe(9);
+  });
+});
+
+describe("TEN", () => {
+  it("evaluates to 10", () => {
+    expect(toInt(λ.TEN)).toBe(10);
   });
 });
 

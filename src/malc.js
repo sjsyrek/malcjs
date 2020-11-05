@@ -27,6 +27,20 @@ export const TWO = (f) => (x) => f(f(x));
 
 export const THREE = (f) => (x) => f(f(f(x)));
 
+export const FOUR = (f) => (x) => f(f(f(f(x))));
+
+export const FIVE = (f) => (x) => f(f(f(f(f(x)))));
+
+export const SIX = (f) => (x) => f(f(f(f(f(f(x))))));
+
+export const SEVEN = (f) => (x) => f(f(f(f(f(f(f(x)))))));
+
+export const EIGHT = (f) => (x) => f(f(f(f(f(f(f(f(x))))))));
+
+export const NINE = (f) => (x) => f(f(f(f(f(f(f(f(f(x)))))))));
+
+export const TEN = (f) => (x) => f(f(f(f(f(f(f(f(f(f(x))))))))));
+
 // enumeration
 export const SUCC = (n) => (f) => (x) => f(n(f)(x));
 
