@@ -49,10 +49,9 @@ export const toPairInt = (p) => {
 
 export const printPair = (p) => `(${p.fst},${p.snd})`;
 
-export const toString = (str) =>
-  toArrayInt(str)
-    .map((n) => String.fromCharCode(n))
-    .join("");
+export const toChar = (chr) => String.fromCharCode(toInt(chr));
+
+export const toString = (str) => toArrayInt(str).map(toChar).join("");
 
 export const fromString = (str) =>
   str.length === 0
@@ -75,14 +74,5 @@ export const toLambda = (x) => {
   if (typeof x === "boolean") return fromBool(x);
   if (typeof x === "string") return fromString(x);
   if (Array.isArray(x)) return fromArray(x.map((y) => toLambda(y)));
-  return x;
-};
-
-export const fromLambda = (x) => {
-  if (Number.isInteger(toInt(x))) return toInt(x);
-  if (typeof toBool(x) === "boolean") return toBool(x);
-  if (Array.isArray(toArray(x))) {
-    return toArray(x).map((elem) => fromLambda(elem));
-  }
   return x;
 };
