@@ -1,56 +1,40 @@
-import {
-  APPEND,
-  EMPTY_LIST,
-  IF_THEN_ELSE,
-  IS_ZERO,
-  LIST_ELEMENT,
-  MAP,
-  MOD,
-  MULT,
-  PLUS,
-  TWO,
-  THREE,
-  FIVE,
-  SIX,
-  SEVEN,
-  TEN,
-} from "./malc";
+const λ = require("./malc");
 
-export const FIFTEEN = PLUS(TEN)(FIVE);
+const FIFTEEN = λ.PLUS(λ.TEN)(λ.FIVE);
 
-export const TWENTY = PLUS(TEN)(TEN);
+const TWENTY = λ.PLUS(λ.TEN)(λ.TEN);
 
-export const HUNDRED = MULT(TEN)(TEN);
+const HUNDRED = λ.MULT(λ.TEN)(λ.TEN);
 
-export const F = MULT(TEN)(SEVEN);
+const F = λ.MULT(λ.TEN)(λ.SEVEN);
 
-export const I = PLUS(HUNDRED)(FIVE);
+const I = λ.PLUS(HUNDRED)(λ.FIVE);
 
-export const Z = PLUS(HUNDRED)(PLUS(TWENTY)(TWO));
+const Z = λ.PLUS(HUNDRED)(λ.PLUS(TWENTY)(λ.TWO));
 
-export const B = PLUS(MULT(TEN)(SIX))(SIX);
+const B = λ.PLUS(λ.MULT(λ.TEN)(λ.SIX))(λ.SIX);
 
-export const U = PLUS(HUNDRED)(PLUS(TEN)(SEVEN));
+const U = λ.PLUS(HUNDRED)(λ.PLUS(λ.TEN)(λ.SEVEN));
 
-export const FIZZ = LIST_ELEMENT(F)(
-  LIST_ELEMENT(I)(LIST_ELEMENT(Z)(LIST_ELEMENT(Z)(EMPTY_LIST)))
+const FIZZ = λ.LIST_ELEMENT(F)(
+  λ.LIST_ELEMENT(I)(λ.LIST_ELEMENT(Z)(λ.LIST_ELEMENT(Z)(λ.EMPTY_LIST)))
 );
 
-export const BUZZ = LIST_ELEMENT(B)(
-  LIST_ELEMENT(U)(LIST_ELEMENT(Z)(LIST_ELEMENT(Z)(EMPTY_LIST)))
+const BUZZ = λ.LIST_ELEMENT(B)(
+  λ.LIST_ELEMENT(U)(λ.LIST_ELEMENT(Z)(λ.LIST_ELEMENT(Z)(λ.EMPTY_LIST)))
 );
 
-export const FIZZBUZZ = APPEND(FIZZ)(BUZZ);
+const FIZZBUZZ = λ.APPEND(FIZZ)(BUZZ);
 
-export const FIZZBUZZFUNC = MAP((n) =>
-  IF_THEN_ELSE(IS_ZERO(MOD(n)(FIFTEEN)))(FIZZBUZZ)(
-    IF_THEN_ELSE(IS_ZERO(MOD(n)(THREE)))(FIZZ)(
-      IF_THEN_ELSE(IS_ZERO(MOD(n)(FIVE)))(BUZZ)(n)
+const FIZZBUZZFUNC = λ.MAP((n) =>
+  λ.IF_THEN_ELSE(λ.IS_ZERO(λ.MOD(n)(FIFTEEN)))(FIZZBUZZ)(
+    λ.IF_THEN_ELSE(λ.IS_ZERO(λ.MOD(n)(λ.THREE)))(FIZZ)(
+      λ.IF_THEN_ELSE(λ.IS_ZERO(λ.MOD(n)(λ.FIVE)))(BUZZ)(n)
     )
   )
 );
 
-export const FIZZBUZZFUNC_EXP = ((f) =>
+const FIZZBUZZFUNC_EXP = ((f) =>
   ((f) =>
     ((x) => f((y) => x(x)(y)))((x) =>
       f((y) => x(x)(y))
@@ -465,3 +449,19 @@ export const FIZZBUZZFUNC_EXP = ((f) =>
     )
   )
 );
+
+module.exports = {
+  FIFTEEN,
+  TWENTY,
+  HUNDRED,
+  F,
+  I,
+  Z,
+  B,
+  U,
+  FIZZ,
+  BUZZ,
+  FIZZBUZZ,
+  FIZZBUZZFUNC,
+  FIZZBUZZFUNC_EXP,
+};

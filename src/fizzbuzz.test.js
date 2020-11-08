@@ -1,6 +1,6 @@
-import { ONE, RANGE } from "./malc";
-import { FIFTEEN, FIZZBUZZFUNC, FIZZBUZZFUNC_EXP } from "./fizzbuzz";
-import { toFizzBuzz } from "./utils";
+const λ = require("./malc");
+const fb = require("./fizzbuzz");
+const { toFizzBuzz } = require("./utils");
 
 const fizzBuzz = [
   1,
@@ -22,12 +22,16 @@ const fizzBuzz = [
 
 describe("FIZZBUZZFUNC", () => {
   it("returns the first n FizzBuzz numbers, given a number n", () => {
-    expect(toFizzBuzz(FIZZBUZZFUNC(RANGE(ONE)(FIFTEEN)))).toEqual(fizzBuzz);
+    expect(toFizzBuzz(fb.FIZZBUZZFUNC(λ.RANGE(λ.ONE)(fb.FIFTEEN)))).toEqual(
+      fizzBuzz
+    );
   });
 });
 
 describe("FIZZBUZZFUNC_EXP", () => {
   it("returns the first n FizzBuzz numbers, given a number n", () => {
-    expect(toFizzBuzz(FIZZBUZZFUNC_EXP(RANGE(ONE)(FIFTEEN)))).toEqual(fizzBuzz);
+    expect(toFizzBuzz(fb.FIZZBUZZFUNC_EXP(λ.RANGE(λ.ONE)(fb.FIFTEEN)))).toEqual(
+      fizzBuzz
+    );
   });
 });

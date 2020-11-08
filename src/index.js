@@ -1,17 +1,26 @@
-import * as malc from "./malc.js";
-import * as fizzbuzz from "./fizzbuzz.js";
-import * as utils from "./utils.js";
+const vm = require("vm");
+const repl = require("repl");
 
-import vm from "vm";
-import repl from "repl";
+const malc = require("./malc.js");
+const fizzbuzz = require("./fizzbuzz.js");
+const utils = require("./utils.js");
 
-const context = {
+const lambdas = {
   ...malc,
   ...fizzbuzz,
+};
+
+const context = {
+  ...lambdas,
   ...utils,
 };
 
 vm.createContext(context);
+
+console.log(`
+  Hello, ${process.env.USER}!
+  Welcome to the maλc REPL. Type ".malc" to see a list of functions or ".utils" for helpers.
+`);
 
 const replServer = repl.start("λ> ");
 
@@ -23,10 +32,12 @@ replServer.defineCommand("malc", {
     this.clearBufferedCommand();
     if (arg) {
       console.log(
-        malc[arg] ? `${arg}: ${malc[arg]}` : `Function ${arg} does not exist`
+        lambdas[arg]
+          ? `${arg}: ${lambdas[arg]}`
+          : `Function ${arg} does not exist`
       );
     } else {
-      console.table(Object.entries(malc));
+      console.table(Object.entries(lambdas));
     }
     this.displayPrompt();
   },
@@ -46,4 +57,9 @@ replServer.defineCommand("utils", {
     }
     this.displayPrompt();
   },
+});
+
+replServer.on("exit", () => {
+  console.log("Farewell... have a functional day!");
+  process.exit();
 });

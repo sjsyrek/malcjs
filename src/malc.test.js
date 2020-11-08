@@ -1,5 +1,5 @@
-import * as λ from "./malc";
-import {
+const λ = require("./malc");
+const {
   fromString,
   toArray,
   toArrayInt,
@@ -9,7 +9,7 @@ import {
   toPairInt,
   toString,
   toTreeInt,
-} from "./utils";
+} = require("./utils");
 
 describe("ID", () => {
   it("returns the argument passed into it", () => {

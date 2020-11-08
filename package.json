@@ -1,6 +1,6 @@
 {
   "name": "malc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Make a lambda calculus",
   "author": "Steven J. Syrek",
   "license": "ISC",
@@ -10,33 +10,10 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "babel ./src -d lib --ignore 'src/**/*.test.js'",
-    "test": "jest",
-    "start": "node ./lib/index -i"
+    "start": "node ./src/index -i",
+    "test": "jest"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "babel-jest": "^26.6.1",
     "jest": "^26.6.1"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "@babel/plugin-transform-modules-commonjs"
-        ]
-      }
-    }
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.[t|j]sx?$": "babel-jest"
-    }
   }
 }
