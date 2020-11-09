@@ -63,3 +63,29 @@ replServer.on("exit", () => {
   console.log("Farewell... have a functional day!");
   process.exit();
 });
+
+Object.defineProperty(replServer.context, "_", {
+  configurable: true,
+  get: () => replServer.last,
+  set: (value) => {
+    replServer.last = value;
+    if (!replServer.underscoreAssigned) {
+      replServer.underscoreAssigned = true;
+      replServer.output.write("Expression assignment to _ now disabled.\n");
+    }
+  },
+});
+
+Object.defineProperty(replServer.context, "_error", {
+  configurable: true,
+  get: () => replServer.lastError,
+  set: (value) => {
+    replServer.lastError = value;
+    if (!replServer.underscoreErrAssigned) {
+      replServer.underscoreErrAssigned = true;
+      replServer.output.write(
+        "Expression assignment to _error now disabled.\n"
+      );
+    }
+  },
+});

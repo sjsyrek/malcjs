@@ -21,6 +21,16 @@ The best way to learn your lambdas is to play with them in a REPL. This package 
 [ 2, 3, 4 ]
 ```
 
+The built-in underscore `_` variable is useful for working with lambdas and translating them to and from JavaScript:
+
+```sh
+λ> LIST_ELEMENT(ONE)(LIST_ELEMENT(TWO)(LIST_ELEMENT(THREE)(LIST_ELEMENT(FOUR)(LIST_ELEMENT(FIVE)(EMPTY_LIST)))))
+λ> LIST_ELEMENT(_)(LIST_ELEMENT(_)(LIST_ELEMENT(_)(EMPTY_LIST)))
+λ> MAP(REVERSE)(_)
+λ> toArray(_).map(toArrayInt)
+[ [ 5, 4, 3, 2, 1 ], [ 5, 4, 3, 2, 1 ], [ 5, 4, 3, 2, 1 ] ]
+```
+
 ### REPL help commands
 
 - `.malc` - see a list of the predefined lambda functions available in the global scope.
