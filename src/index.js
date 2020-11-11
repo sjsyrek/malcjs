@@ -1,4 +1,3 @@
-const vm = require("vm");
 const repl = require("repl");
 
 const malc = require("./malc.js");
@@ -15,8 +14,6 @@ const context = {
   ...utils,
 };
 
-vm.createContext(context);
-
 console.log(`
   Hello, ${process.env.USER}!
   Welcome to the maλc REPL. Type ".malc" to see a list of functions or ".utils" for helpers.
@@ -24,7 +21,7 @@ console.log(`
 
 const replServer = repl.start("λ> ");
 
-replServer.context = context;
+Object.assign(replServer.context, { ...context });
 
 replServer.defineCommand("malc", {
   help: "Show built-in lambda functions",
@@ -37,7 +34,7 @@ replServer.defineCommand("malc", {
           : `Function ${arg} does not exist`
       );
     } else {
-      console.table(Object.entries(lambdas));
+      console.table(lambdas);
     }
     this.displayPrompt();
   },
@@ -53,7 +50,7 @@ replServer.defineCommand("utils", {
         utils[arg] ? `${arg}: ${utils[arg]}` : `Function ${arg} does not exist`
       );
     } else {
-      console.table(Object.entries(utils));
+      console.table(utils);
     }
     this.displayPrompt();
   },
@@ -62,30 +59,4 @@ replServer.defineCommand("utils", {
 replServer.on("exit", () => {
   console.log("Farewell... have a functional day!");
   process.exit();
-});
-
-Object.defineProperty(replServer.context, "_", {
-  configurable: true,
-  get: () => replServer.last,
-  set: (value) => {
-    replServer.last = value;
-    if (!replServer.underscoreAssigned) {
-      replServer.underscoreAssigned = true;
-      replServer.output.write("Expression assignment to _ now disabled.\n");
-    }
-  },
-});
-
-Object.defineProperty(replServer.context, "_error", {
-  configurable: true,
-  get: () => replServer.lastError,
-  set: (value) => {
-    replServer.lastError = value;
-    if (!replServer.underscoreErrAssigned) {
-      replServer.underscoreErrAssigned = true;
-      replServer.output.write(
-        "Expression assignment to _error now disabled.\n"
-      );
-    }
-  },
 });
