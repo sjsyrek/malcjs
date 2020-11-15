@@ -41,6 +41,8 @@ const toPairInt = (p) => {
 
 const printPair = (p) => `(${p.fst},${p.snd})`;
 
+const printPairInt = λ.COMPOSE(printPair)(toPairInt);
+
 const toChar = (chr) => String.fromCharCode(toInt(chr));
 
 const toString = (str) => toArray(str).map(toChar).join("");
@@ -59,6 +61,8 @@ const toTreeInt = (t) =>
 
 const printTree = (t) =>
   t.length === 0 ? "[]" : `[${t[0]}, ${printTree(t[1])}, ${printTree(t[2])}]`;
+
+const printTreeInt = λ.COMPOSE(printTree)(toTreeInt);
 
 const toFizzBuzz = (fb) =>
   toArray(fb).map((x) => (toString(x) === "" ? toInt(x) : toString(x)));
@@ -83,11 +87,13 @@ module.exports = {
   toPair,
   toPairInt,
   printPair,
+  printPairInt,
   toChar,
   toString,
   fromString,
   toTreeInt,
   printTree,
+  printTreeInt,
   toFizzBuzz,
   toLambda,
 };

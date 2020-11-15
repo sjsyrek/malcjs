@@ -1,3 +1,4 @@
+const { EMPTY_LIST } = require("./malc");
 const λ = require("./malc");
 const {
   fromString,
@@ -556,6 +557,13 @@ describe("TAKE", () => {
     );
     const expr = λ.TAKE(λ.TWO)(lst);
     expect(toArrayInt(expr)).toEqual([1, 2]);
+  });
+  it("returns an empty list if the given length is 0", () => {
+    const lst = λ.LIST_ELEMENT(λ.ONE)(
+      λ.LIST_ELEMENT(λ.TWO)(λ.LIST_ELEMENT(λ.THREE)(λ.EMPTY_LIST))
+    );
+    const expr = λ.TAKE(λ.ZERO)(lst);
+    expect(toArray(expr)).toEqual([]);
   });
   it("returns an empty list when passed an empty list", () => {
     const expr = λ.TAKE(λ.TWO)(λ.EMPTY_LIST);
